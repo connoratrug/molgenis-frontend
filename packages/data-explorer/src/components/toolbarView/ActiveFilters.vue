@@ -1,8 +1,7 @@
 <template>
   <div>
-    <button type="button" class="btn btn-light mr-1 btn-outline-secondary"> Search: Hello wor <font-awesome-icon icon="times" class="ml-1"></font-awesome-icon></button>
-    <button type="button" class="btn btn-light mr-1 btn-outline-secondary"> Color: Red <font-awesome-icon icon="times" class="ml-1"></font-awesome-icon></button>
-  </div>
+    <button v-for="(activeFilter, index) in activeFilters" :key="`af-${index}`"  type="button" class="btn btn-light mr-1 btn-outline-secondary"> {{ activeFilter }} <font-awesome-icon icon="times" class="ml-1"></font-awesome-icon></button>
+   </div>
 </template>
 
 <script>
@@ -15,7 +14,25 @@ library.add(faTimes)
 
 export default Vue.extend({
   name: 'ActiveFilters',
-  components: { FontAwesomeIcon }
+  components: { FontAwesomeIcon },
+  props: {
+    filter: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    activeFilters () {
+      return Object.values(this.filter).reduce((accum, item) => {
+        if (typeof item == 'string') {
+          accum.push(item)
+        } else {
+          accum = accum.concat(item)
+        }
+        return accum
+      }, [])
+    }
+  }
 })
 </script>
 

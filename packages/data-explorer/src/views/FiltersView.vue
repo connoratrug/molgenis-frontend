@@ -16,7 +16,8 @@
       </div>
       <div class="p-2">
         <filter-container
-          v-model="selections"
+          :value="filter"
+          @input="setFilter"
           :filters="filters"
           :filters-shown="filtersShown"
           :can-edit="true"
@@ -43,9 +44,6 @@ export default Vue.extend({
   components: { FilterContainer, FontAwesomeIcon },
   data () {
     return {
-      selections: {
-        search: 'test'
-      },
       filtersShown: ['search', 'color', 'name', 'price'],
       filters: [ {
         name: 'search',
@@ -97,10 +95,10 @@ export default Vue.extend({
     }
   },
   computed: {
-    ...mapState(['hideFilters'])
+    ...mapState(['hideFilters', 'filter'])
   },
   methods: {
-    ...mapMutations([ 'setHideFilters' ]),
+    ...mapMutations([ 'setHideFilters', 'setFilter' ]),
     updateState (newState) {
       this.filtersShown = newState
     }

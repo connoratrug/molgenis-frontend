@@ -22,7 +22,7 @@
       Show cart
     </button>
 
-    <active-filters></active-filters>
+    <active-filters :filter="filter"></active-filters>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ library.add(faShoppingCart, faTh, faThList, faSlidersH, faStore, faShoppingBag)
 export default Vue.extend({
   name: 'ToolbarView',
   computed: {
-    ...mapState(['dataDisplayLayout', 'hideFilters', 'showShoppingCart', 'tableSettings'])
+    ...mapState(['dataDisplayLayout', 'hideFilters', 'showShoppingCart', 'tableSettings', 'filter'])
   },
   methods: {
     ...mapMutations(['setDataDisplayLayout', 'setShowShoppingCart', 'setHideFilters']),

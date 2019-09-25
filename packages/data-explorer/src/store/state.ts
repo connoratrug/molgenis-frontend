@@ -18,7 +18,8 @@ const state: ApplicationState = {
     customCardCode: null,
     customCardAttrs: '',
     isShop: false
-  }
+  },
+  filter: {}
 }
 
 export default state

@@ -34,4 +34,5 @@ export default interface ApplicationState {
   hideFilters: boolean,
   showShoppingCart: boolean
   tableSettings: TableSetting
+  filter: any
 }

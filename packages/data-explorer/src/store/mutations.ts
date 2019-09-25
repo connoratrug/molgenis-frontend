@@ -71,5 +71,8 @@ export default {
         Vue.set(state.tableData.items, index, rowData)
       }
     })
+  },
+  setFilter (state: ApplicationState, filter: any) {
+    state.filter = filter
   }
 }
