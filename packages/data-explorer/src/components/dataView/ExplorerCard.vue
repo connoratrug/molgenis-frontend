@@ -32,8 +32,7 @@
 <script>
 import Vue from 'vue'
 import ShoppingButton from '../utils/ShoppingButton'
-import DefaultCardContent from '../../../../components/src/components/card/DefaultCardContent.vue'
-import CustomCardContent from './CustomCardContent'
+import { DefaultCardContent, CustomCardContent } from '@molgenis-ui/components'
 
 export default Vue.extend({
   name: 'ExplorerCard',
