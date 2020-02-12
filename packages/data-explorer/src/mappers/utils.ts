@@ -1,3 +1,3 @@
-import { MetaDataAttribute } from '@/types/ApiResponse'
+import { MetaDataAttribute, MetaDataApiResponseAttribute } from '@/types/ApiResponse'
 
-export const getCategoricals = (attributes: MetaDataAttribute[]): MetaDataAttribute[] => attributes.filter(item => item.fieldType.includes('CATEGORICAL'))
+export const getCategoricals = (attributes: MetaDataApiResponseAttribute[]): MetaDataApiResponseAttribute[] => attributes.filter(item => item.type.includes('categorical'))

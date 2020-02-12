@@ -223,12 +223,6 @@ describe('mutations', () => {
       })
     })
   })
-  describe('setMetaDataRefLabels', () => {
-    it('sets the object with the labels for all ref entities', () => {
-      mutations.setMetaDataRefLabels(baseAppState, entityMetaData)
-      // expect(baseAppState.entityMetaRefLabels).toEqual({'it_emx_datatypes_TypeTestRef': 'label'})
-    })
-  })
   describe('updateRowData', () => {
     it('throws error on empty table', () => {
       try {

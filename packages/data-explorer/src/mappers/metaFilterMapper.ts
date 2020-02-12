@@ -6,12 +6,14 @@ import { FilterDefinition } from '@/types/ApplicationState'
 
 const mapMetaToFilters = async (meta: MetaDataApiResponse) => {
   let shownFilters:string[] = []
+                       
+  const attrs = meta.data.attributes.items.map(item => item.data)
 
   // TODO: map all filters
-  const categoricals = await Promise.all(getCategoricals(meta.attributes).map(async (item) => {
-    const href = item && item.refEntity && item.refEntity.href
+  const categoricals = await Promise.all(getCategoricals(attrs).map(async (item) => {
+    const href = item && item.refEntityType && item.refEntityType.self
 
-    if (!href) throw new Error('categorical without href')
+    if (!href) throw new Error('categorical without self ref')
 
     const options = await getOptions(href)
     shownFilters.push(item.name)

@@ -6,6 +6,7 @@ import * as metaDataRepository from '@/repository/metaDataRepository'
 import * as dataRepository from '@/repository/dataRepository'
 import * as metaDataService from '@/repository/metaDataService'
 import * as metaFilterMapper from '@/mappers/metaFilterMapper'
+import { MetaDataApiResponse } from '@/types/ApiResponse'
 
 export default {
   getTableSettings: tryAction(async ({ commit, state }: { commit: any, state: ApplicationState },
@@ -21,7 +22,7 @@ export default {
       throw new Error('cannot load table data for non string table id')
     }
 
-    const metaData = await metaDataRepository.fetchMetaData(state.tableName)
+    const metaData:MetaDataApiResponse = await metaDataRepository.fetchMetaData(state.tableName)
     commit('setMetaData', metaData)
     commit('setFilters', await metaFilterMapper.mapMetaToFilters(metaData))
 
