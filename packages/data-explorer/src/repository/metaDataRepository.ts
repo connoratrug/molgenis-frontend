@@ -1,6 +1,6 @@
-// @ts-ignore
-import api from '@molgenis/molgenis-api-client'
+import axios from 'axios'
 import { StringMap } from '../types/GeneralTypes'
+import { MetaDataApiResponse } from '@/types/ApiResponse'
 
 const metaDataCache:StringMap = {}
 
@@ -10,11 +10,13 @@ const fetchMetaData = async (entityId: string) => {
     return metaDataCache[entityId]
   }
 
-  const resp = await api.get(`/api/v2/${entityId}?num=0`)
+  const resp = await axios.get<MetaDataApiResponse>(`/api/metadata/${entityId}`)
+  resp.
   metaDataCache[entityId] = resp.meta
+  // @ts-ignore
   return resp.meta
 }
 
 export {
   fetchMetaData
-}
+}c
