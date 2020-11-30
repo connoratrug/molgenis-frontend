@@ -17,10 +17,13 @@ import DateRangePicker from 'vue2-daterange-picker'
 import VueSlider from 'vue-slider-component'
 // @ts-ignore
 import draggable from 'vuedraggable'
+// @ts-ignore
+import vSelect from 'vue-select'
 
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue2-daterange-picker/dist/vue2-daterange-picker.css'
 import 'vue-slider-component/theme/default.css'
+import 'vue-select/dist/vue-select.css'
 
 export default function (BootstrapVue: any, Vue: any) {
   library.add(
@@ -35,6 +38,7 @@ export default function (BootstrapVue: any, Vue: any) {
   Vue.component('DateRangePicker', DateRangePicker)
   Vue.component('VueSlider', VueSlider)
   Vue.component('draggable', draggable)
+  Vue.component('v-select', vSelect)
 
   return Vue
 }

@@ -16,23 +16,7 @@
 const defaultTimeout = 3000
 
 export default {
-  data: function () {
-    return {
-      toasts: [...this.value]
-    }
-  },
   name: 'Toaster',
-  methods: {
-    clearToast (toast) {
-      this.toasts.splice(this.toasts.indexOf(toast), 1)
-      /**
-      * v-model return value
-      * @event input
-      * @property {Object[]} Toasts array with toast removed
-      */
-      this.$emit('input', [...this.toasts])
-    }
-  },
   props: {
     /**
      * List of toasts to show (see types/Toast.ts)
@@ -50,6 +34,22 @@ export default {
     position: {
       type: String,
       default: () => 'bottom-right'
+    }
+  },
+  data: function () {
+    return {
+      toasts: [...this.value]
+    }
+  },
+  methods: {
+    clearToast (toast) {
+      this.toasts.splice(this.toasts.indexOf(toast), 1)
+      /**
+      * v-model return value
+      * @event input
+      * @property {Object[]} Toasts array with toast removed
+      */
+      this.$emit('input', [...this.toasts])
     }
   },
   watch: {
