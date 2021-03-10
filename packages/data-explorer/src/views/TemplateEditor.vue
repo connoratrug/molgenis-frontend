@@ -25,6 +25,8 @@
           </div>
         </form>
 
+        <div style="color: red; font-size: 10px;">{{logMsg}}</div>
+
       </div>
 
       <div class="col-6">
@@ -114,12 +116,19 @@ export default {
       /**
        * Selected record to use in preview
        */
-      selectedOption: null
+      selectedOption: null,
+      /**
+       * console log messages
+       */
+      logMsg: ''
     }
   },
   computed: {
     ...mapState(['toast', 'tableMeta', 'tableSettings']),
-    ...mapGetters(['customCardAttrs'])
+    ...mapGetters(['customCardAttrs']),
+    customCardCode () {
+      return this.tableSettings ? this.tableSettings.customCardCode : ''
+    }
   },
   methods: {
     ...mapMutations([
@@ -150,6 +159,11 @@ export default {
       this.record = await this.fetchTemplateData({ rowId: this.selectedOption, attrs: this.selectedRecordProps })
     }
   },
+  watch: {
+    customCardCode () {
+      this.logMsg = '' // reset error if the template code changed
+    }
+  },
   async mounted () {
     const tableName = this.$route.params.entity
     await this.fetchTableMeta({ tableName })
@@ -160,6 +174,22 @@ export default {
     this.record = await this.fetchTemplateData({ rowId: this.selectedOption, attrs: this.selectedRecordProps })
     this.recordProps = await this.fetchRowData({ rowId: this.selectedOption })
     this.setTableName(tableName)
+  },
+  created () {
+    if (typeof console !== 'undefined' || typeof console.log !== 'undefined') {
+      console.olog = console.log
+    } else {
+      console.olog = () => {}
+    }
+
+    console.log = (message) => {
+      console.olog(message)
+      this.logMsg = message
+    }
+    console.error = console.debug = console.info = console.log
+  },
+  destroyed () {
+    console.log = console.error = console.debug = console.info = console.olog
   }
 }
 </script>
